@@ -1,0 +1,41 @@
+﻿@model IEnumerable<finalprojectv2.Models.Post>
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@foreach (var item in Model)
+{
+    <div class="blog-post shadow p-3 mb-5 bg-white rounded container">
+        <div class='title'><span style='font-size:24px; font-weight:bold;'>@Html.DisplayFor(modelItem => item.Title)</span></div>
+        <div class='user' style='font-style: italic; font-size: 16px;'>By @Html.DisplayFor(modelItem => item.User) &#64; <span class='date' style='font-size:14px!important'>@Html.DisplayFor(modelItem => item.Date)</span></div>
+        <hr />
+            @if(item.Content.Length < 300){
+                
+                <p id='blog-content' class="content container">@Html.DisplayFor(modelItem => item.Content)</p>
+            }
+            else{
+                string x = item.Content;
+                x = x.Substring(0,300);
+                <p></p>
+                <p id='blog-content' class='content container'>@Html.Raw(x) ..... 
+                    <a style='font-weight:bold; font-size:16px;' href="/posts/details/@item.Id">Read More</a>
+                </p>
+            }
+            @if (SignInManager.IsSignedIn(User) && @User.Identity.Name == item.User)
+            {
+            <div class='d-flex justify-content-center'>
+                <div class='ui-buttons'>
+                    <a class='btn btn-dark btn-sm' asp-controller='Posts' asp-action="Create">Create New</a> |
+                    <a class='btn btn-dark btn-sm' asp-controller='Posts' asp-action="Edit" asp-route-id="@item.Id">Edit Post</a> |
+                    <a class='btn btn-dark btn-sm' asp-controller="Posts" asp-action="Delete" asp-route-id="@item.Id">Delete Post</a>
+                </div>
+            </div>
+            }
+    </div>    
+}

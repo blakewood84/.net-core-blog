@@ -1,0 +1,60 @@
+@model finalprojectv2.Models.Post
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@using System.Globalization
+@{
+    ViewData["Title"] = "Create a Blog Post";
+}
+
+<h1 style='color:whitesmoke!important;'>Create A Post</h1>
+<hr />
+@if (SignInManager.IsSignedIn(User))
+{
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Content" class="control-label"></label>
+                <textarea asp-for="Content" class="form-control"></textarea>
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+            <div class="form-group" style='display:none;'>
+                <label asp-for="Date" class="control-label"></label>
+                @{
+                    String date = DateTime.Now.ToString("MM.dd.yyy hh:mm:ss");
+                    <input value=@date asp-for="Date" class="form-control" />
+                }
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group" style='display: none;'>
+                <label asp-for="User" class="control-label"></label>
+                 @{
+                    String user = @User.Identity.Name;
+                    <input value=@user asp-for="User" class="form-control" />
+                }
+                <span asp-validation-for="User" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+}
+else{
+    <h1 style='color:whitesmoke!important'>Login first!</h1>
+}
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

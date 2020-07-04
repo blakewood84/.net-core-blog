@@ -1,0 +1,63 @@
+@model finalprojectv2.Models.Post
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = "Edit";
+}
+@if (SignInManager.IsSignedIn(User) && @User.Identity.Name == this.Model.User)
+{
+    <h1 style='color:whitesmoke!important;'>Edit</h1>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label style='color:whitesmoke!important;' asp-for="Title" class="control-label"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label style='color:whitesmoke!important;' asp-for="Content" class="control-label"></label>
+                    <textarea style='width:600px;height: 300px;' asp-for='Content' class='form-control'></textarea>
+                    <span asp-validation-for="Content" class="text-danger"></span>
+                </div>
+                <div class="form-group" style='display:none;'>
+                <label asp-for="Date" class="control-label"></label>
+                @{
+                    String date = DateTime.Now.ToString("MM.dd.yyy hh:mm:ss");
+                    <input value=@date asp-for="Date" class="form-control" />
+                }
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group" style='display: none;'>
+                <label asp-for="User" class="control-label"></label>
+                 @{
+                    String user = @User.Identity.Name;
+                    <input value=@user asp-for="User" class="form-control" />
+                }
+                <span asp-validation-for="User" class="text-danger"></span>
+            </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-controller='Home' asp-action="Index">Back to List</a>
+    </div>
+}
+else{
+    <h1 style='color:whitesmoke'>You do not have access to edit this User's Information!</h1>
+}
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
