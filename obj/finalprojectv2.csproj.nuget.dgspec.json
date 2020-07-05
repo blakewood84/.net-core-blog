@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\School\\Module6-Backend-Foundations\\finalprojectv2\\finalprojectv2.csproj": {}
+    "D:\\School\\Module6-Backend-Foundations\\FinalProjectv2\\finalprojectv2.csproj": {}
   },
   "projects": {
-    "D:\\School\\Module6-Backend-Foundations\\finalprojectv2\\finalprojectv2.csproj": {
+    "D:\\School\\Module6-Backend-Foundations\\FinalProjectv2\\finalprojectv2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\School\\Module6-Backend-Foundations\\finalprojectv2\\finalprojectv2.csproj",
+        "projectUniqueName": "D:\\School\\Module6-Backend-Foundations\\FinalProjectv2\\finalprojectv2.csproj",
         "projectName": "finalprojectv2",
-        "projectPath": "D:\\School\\Module6-Backend-Foundations\\finalprojectv2\\finalprojectv2.csproj",
+        "projectPath": "D:\\School\\Module6-Backend-Foundations\\FinalProjectv2\\finalprojectv2.csproj",
         "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "D:\\School\\Module6-Backend-Foundations\\finalprojectv2\\obj\\",
+        "outputPath": "D:\\School\\Module6-Backend-Foundations\\FinalProjectv2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config"
